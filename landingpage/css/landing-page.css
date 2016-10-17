@@ -8,6 +8,9 @@ body,
 html {
     width: 100%;
     height: 100%;
+    font-family: 'Lora', serif;
+    font-size: 13px;
+    line-height: 45px;
 }
 
 body,
@@ -35,7 +38,7 @@ h6 {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(../img/intro-bg.jpg) no-repeat center center;
+    background: url(../img/dentistworking.jpg) no-repeat center center;
     background-size: cover;
 }
 
@@ -94,11 +97,12 @@ h6 {
 
 .content-section-a {
     padding: 50px 0;
-    background-color: #f8f8f8;
+    background-color: #e6d9c2;
 }
 
 .content-section-b {
     padding: 50px 0;
+    background-color: #fcfbf8;
     border-top: 1px solid #e7e7e7;
     border-bottom: 1px solid #e7e7e7;
 }
@@ -162,9 +166,48 @@ h6 {
 
 footer {
     padding: 50px 0;
-    background-color: #f8f8f8;
+    background-color: #e6d9c2;
 }
 
 p.copyright {
     margin: 15px 0 0;
+}
+
+#section-2{
+    margin-top: 125px;
+}
+
+#inline{
+    display: inline;
+}
+
+#address{
+    margin-left: 105px;
+}
+
+#copy, #logo {
+    opacity: 1;
+    position: absolute;
+    margin:auto;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+}
+
+#before{
+    padding-top: 0;
+    border-top: none;
+}
+
+#after{
+    border-bottom: none;
+}
+
+.carousel-control.left, .carousel-control.right {
+    background-image: none
+}
+
+.item{
+    width: 800px;
 }
