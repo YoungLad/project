@@ -32,15 +32,15 @@
                    { first_name : 'Susan',
                      last_name  : 'Foreman',
                      home       : 'Gallifrey'} ];
-        response = $.parseJSON(response);
+        // table_data = $.parseJSON(table_data);
 
 		$(function() {
-		    $.each(response, function(i, item) {
+		    $.each(table_data, function(i, item) {
 		        var $tr = $('<tr>').append(
 		            $('<td>').text(item.first_name),
 		            $('<td>').text(item.last_name),
 		            $('<td>').text(item.home)
-		        ); //.appendTo('#records_table');
+		        ).appendTo('#data')
 		        console.log($tr.wrap('<p>').html());
 		    });
 		});
