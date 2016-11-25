@@ -7,6 +7,15 @@
   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
   crossorigin="anonymous"></script>
 
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 	<script type="text/javascript">
 		var table_data = [ { first_name : 'Rose',
                      last_name  : 'Tyler',
@@ -36,19 +45,105 @@
 
 		$(function() {
 		    $.each(table_data, function(i, item) {
-		        var $tr = $('<tr>').append(
+		        var $tr = $(`<tr id=` + `sour` + i + `>`).append(
 		            $('<td>').text(item.first_name),
 		            $('<td>').text(item.last_name),
 		            $('<td>').text(item.home)
 		        ).appendTo('#data')
-		        console.log($tr.wrap('<p>').html());
+		        console.log(item)
 		    });
 		});
+
+		var addedrows = new Array();
+ 
+$(document).ready(function() {
+    $( "#data-table tbody tr" ).on( "click", function( event ) {
+   
+    var ok = 0;
+    var theid = $( this ).attr('id').replace("sour","");    
+ 
+    var newaddedrows = new Array();
+     
+    for (index = 0; index < addedrows.length; ++index) {
+ 
+        // if already selected then remove
+        if (addedrows[index] == theid) {
+                
+            $( this ).css( "background-color", "#ffccff" );
+             
+            // remove from second table :
+            var tr = $( "#dest" + theid );
+            tr.css("background-color","#FF3700");
+            tr.fadeOut(400, function(){
+                tr.remove();
+            });
+             
+            //addedrows.splice(theid, 1);   
+             
+            //the boolean
+            ok = 1;
+        } else {
+         
+            newaddedrows.push(addedrows[index]);
+        } 
+    }   
+     
+    addedrows = newaddedrows;
+     
+    // if no match found then add the row :
+    if (!ok) {
+        // retrieve the id of the element to match the id of the new row :
+         
+         
+        addedrows.push( theid);
+         
+        $( this ).css( "background-color", "#cacaca" );
+                 
+        $('#selected-data tr:last').after('<tr id="dest' + theid + '"><td>'
+                                       + $(this).find("td").eq(0).html() + '</td><td>'
+                                       + $(this).find("td").eq(1).html() + '</td><td>'
+                                       + $(this).find("td").eq(2).html() + '</td><td>'
+                                       + $(this).find("td").eq(3).html() + '</td><td>'
+                                       + $(this).find("td").eq(4).html() + '</td></tr>');         
+         
+    }
+ 
+     
+    });
+});
 		
 	</script>
 </head>
+
 <body>
+
 	<h2>Hello World</h2>
-	<table id="data"></table>
+
+	<table id="data-table" class="table table-hover">
+		<thead>
+		  <tr>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Home</th>
+		  </tr>
+		</thead>
+
+		<tbody id="data">
+			
+		</tbody>
+	</table>
+
+	<table id="selected-data" class="table table-hover">
+		<thead>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Home</th>
+		</thead>
+
+		<tbody id="selected-data">
+			
+		</tbody>
+	</table>
+
 </body>
 </html>
